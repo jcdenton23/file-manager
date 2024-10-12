@@ -1,5 +1,6 @@
 import { copyFile, createEmptyFile, deleteFile, moveFile, readFileAndPrint, renameFile } from './src/fs/index.js';
 import { calculateHash } from './src/hash/calculateHash.js';
+import { cd, ls, up } from './src/nav/index.js';
 import { printCPUInfo, printHomedir, printUsername, printArchitecture, printEOL } from './src/os/index.js';
 import { changeToHomeDirectory, getCommandLineArguments, printCurrentDirectory, validateArgs } from './src/utils.js';
 import { compressFile, decompressFile } from './src/zlib/index.js';
@@ -86,6 +87,21 @@ const commands = {
     if (!validateArgs(args, 1)) return;
     const [filePath] = args;
     calculateHash(filePath);
+  },
+
+  cd: async (args = []) => {
+    if (!validateArgs(args, 1)) return;
+    const [pathToDirectory] = args;
+    console.log('ruuun');
+    await cd(pathToDirectory);
+  },
+
+  up: async () => {
+    await up();
+  },
+
+  ls: async () => {
+    await ls();
   },
 
   '.exit': () => {

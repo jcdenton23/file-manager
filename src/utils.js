@@ -1,4 +1,5 @@
 import os from 'os';
+import fs from 'fs/promises';
 
 export const changeToHomeDirectory = () => {
   try {
@@ -33,4 +34,13 @@ export const validateArgs = (args, expectedCount) => {
     return false;
   }
   return true;
+};
+
+export const isDirectory = async (path) => {
+  try {
+    const stats = await fs.stat(path);
+    return stats.isDirectory();
+  } catch {
+    return false;
+  }
 };
