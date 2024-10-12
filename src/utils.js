@@ -26,3 +26,11 @@ export const getCommandLineArguments = () => {
 
   return username;
 };
+
+export const validateArgs = (args, expectedCount) => {
+  if (args.length !== expectedCount) {
+    console.error(`Expected ${expectedCount} argument(s), but got ${args.length}.`);
+    return false;
+  }
+  return true;
+};
