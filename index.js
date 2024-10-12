@@ -92,7 +92,6 @@ const commands = {
   cd: async (args = []) => {
     if (!validateArgs(args, 1)) return;
     const [pathToDirectory] = args;
-    console.log('ruuun');
     await cd(pathToDirectory);
   },
 
